@@ -5,9 +5,12 @@ import { Results } from '../pages/Results';
 import { Movie } from '../pages/Movie';
 import { Artist } from '../pages/Artist';
 import { NotFound } from '../pages/404NotFound';
+import { Navbar } from '../components/oraganisms/Navbar';
+
 export const Router = () => {
   return (
     <>
+      <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />

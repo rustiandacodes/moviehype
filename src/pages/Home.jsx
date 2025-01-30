@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { genres } from '../utils/genres';
 import { getNowPlayingMovies } from '../services/tmdbapi';
 
 export const Home = () => {
@@ -9,5 +8,5 @@ export const Home = () => {
     });
   });
 
-  return <div>Home</div>;
+  return <div className="bg-dodger-blue">Home</div>;
 };
