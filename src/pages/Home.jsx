@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { genres } from '../utils/genres';
+import { getNowPlayingMovies } from '../services/tmdbapi';
 
 export const Home = () => {
-  console.log(import.meta.env.VITE_SOME_KEY); // "123"
-  console.log(import.meta.env.VITE_DB_PASSWORD); // undefined
+  useEffect(() => {
+    getNowPlayingMovies().then((result) => {
+      console.log(result);
+    });
+  });
 
   return <div>Home</div>;
 };
