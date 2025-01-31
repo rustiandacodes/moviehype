@@ -8,5 +8,5 @@ export const Home = () => {
     });
   });
 
-  return <div className="bg-dodger-blue">Home</div>;
+  return <div className="bg-dodgerblue">Home</div>;
 };

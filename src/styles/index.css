@@ -1,10 +1,17 @@
 @import 'tailwindcss';
 @theme {
+  /* backgroud */
   --color-jet: #333333ff;
+  /* card 1 */
   --color-onyx: #414141ff;
-  --color-davys-gray: #4d4d4dff;
-  --color-pure-white: #ffffffff;
+  /* card 2 */
+  --color-davysgray: #4d4d4dff;
+  /* primary dark */
+  --color-argentinianblue: #44aefeff;
+  /* backgroud */
+  --color-purewhite: #ffffffff;
+  /* card */
   --color-seasalt: #f8f8f8ff;
-  --color-dodger-blue: #008ffeff;
-  --color-argentinian-blue: #44aefeff;
+  /* primary light */
+  --color-dodgerblue: #008ffeff;
 }
