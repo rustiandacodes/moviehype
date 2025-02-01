@@ -4,20 +4,19 @@ const addToCart = createAction('ADD_TO_CART');
 const deleteCart = createAction('DELETE_CART');
 
 const cartReducer = createReducer([], (builder) => {
-  builder.addCase(addToCart, (state, action) => {
-    state.push(action.payload);
-  });
-
-  builder.addCase(deleteCart, (state, action) => {
-    state.filter((x) => x.id !== action.payload);
-    // state.pop();
-  });
+  builder
+    .addCase(addToCart, (state, action) => {
+      state.push(action.payload);
+    })
+    .addCase(deleteCart, (state, action) => {
+      return state.filter((x) => x.id !== action.payload);
+    });
 });
 
 const loginSession = createAction('LOGIN_SESSION');
 
 const loginReducer = createReducer({ status: false }, (builder) => {
-  builder.addCase(loginSession, (state, action) => {
+  builder.addCase(loginSession, (state) => {
     state.status = true;
   });
 });
@@ -35,5 +34,7 @@ store.subscribe(() => {
 });
 
 store.dispatch(addToCart({ id: 2, qty: 10 }));
+store.dispatch(addToCart({ id: 4, qty: 10 }));
+store.dispatch(addToCart({ id: 6, qty: 10 }));
 store.dispatch(addToCart({ id: 3, qty: 20 }));
 store.dispatch(deleteCart(2));

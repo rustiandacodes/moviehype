@@ -1,6 +1,7 @@
 import { legacy_createStore } from 'redux';
 
 const ADD_TO_CART = 'ADD_TO_CART';
+const DELETE_CART = 'DELETE_CART';
 const CHANGE_THEME = 'CHANGE_THEME';
 
 const initialState = { cart: [{ id: 1, qty: 20 }], theme: false };
@@ -12,6 +13,11 @@ const someReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: [...state.cart, action.payload],
+      };
+    case DELETE_CART:
+      return {
+        ...state,
+        cart: state.cart.filter((c) => c.id !== action.payload),
       };
     case CHANGE_THEME:
       return {
@@ -34,6 +40,8 @@ store.subscribe(() => {
 
 // dispatch
 const action1 = { type: ADD_TO_CART, payload: { id: 2, qty: 10 } };
-const action2 = { type: CHANGE_THEME, payload: true };
+const action2 = { type: ADD_TO_CART, payload: { id: 3, qty: 10 } };
+const action4 = { type: DELETE_CART, payload: 2 };
 store.dispatch(action1);
 store.dispatch(action2);
+store.dispatch(action4);
