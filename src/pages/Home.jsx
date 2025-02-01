@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
-import { getNowPlayingMovies } from '../services/tmdbapi';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { changeTheme } from '../redux/slice/themeSlice';
 export const Home = () => {
-  useEffect(() => {
-    getNowPlayingMovies().then((result) => {
-      console.log(result);
-    });
-  });
-
-  return <div className="bg-dodgerblue">Home</div>;
+  const dispatch = useDispatch();
+  const theme = useSelector((state) => state.theme.desc);
+  return (
+    <div className="bg-dodgerblue">
+      <div>{theme}</div>
+      <button className="cursor-pointer p-3 bg-amber-100" onClick={() => dispatch(changeTheme())}>
+        theme change
+      </button>
+    </div>
+  );
 };

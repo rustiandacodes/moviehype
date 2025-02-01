@@ -7,7 +7,7 @@ const cartSlice = createSlice({
     addTocart(state, action) {
       state.push(action.payload);
     },
-    deletCart(state, action) {
+    deleteCart(state, action) {
       return state.filter((x) => x.id !== action.payload);
     },
   },
@@ -39,5 +39,5 @@ store.subscribe(() => {
 store.dispatch(cartSlice.actions.addTocart({ id: 1, qty: 10 }));
 store.dispatch(cartSlice.actions.addTocart({ id: 2, qty: 10 }));
 store.dispatch(cartSlice.actions.addTocart({ id: 3, qty: 10 }));
-store.dispatch(cartSlice.actions.deletCart(1));
+store.dispatch(cartSlice.actions.deleteCart(1));
 store.dispatch(themeSlice.actions.changeTheme());
