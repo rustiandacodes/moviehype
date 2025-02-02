@@ -10,8 +10,6 @@ import { useSelector } from 'react-redux';
 
 export const Router = () => {
   const theme = useSelector((state) => state.theme.desc);
-  console.log(theme);
-
   return (
     <div className={theme}>
       <Navbar />

@@ -2,18 +2,18 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* backgroud */
+  /* backgroud dark mode */
   --color-jet: #333333ff;
-  /* card 1 */
+  /* card 1 dark mode */
   --color-onyx: #414141ff;
-  /* card 2 */
+  /* card 2 dark mode */
   --color-davysgray: #4d4d4dff;
-  /* primary dark */
+  /* primary dark mode */
   --color-argentinianblue: #44aefeff;
-  /* backgroud */
+  /* backgroud light mode */
   --color-purewhite: #ffffffff;
-  /* card */
+  /* card light mode */
   --color-seasalt: #f8f8f8ff;
-  /* primary light */
+  /* primary light mode */
   --color-dodgerblue: #008ffeff;
 }
