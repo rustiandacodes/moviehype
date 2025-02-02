@@ -6,10 +6,14 @@ import { Movie } from '../pages/Movie';
 import { Artist } from '../pages/Artist';
 import { NotFound } from '../pages/404NotFound';
 import { Navbar } from '../components/oraganisms/Navbar';
+import { useSelector } from 'react-redux';
 
 export const Router = () => {
+  const theme = useSelector((state) => state.theme.desc);
+  console.log(theme);
+
   return (
-    <>
+    <div className={theme}>
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
@@ -19,6 +23,6 @@ export const Router = () => {
         <Route path="/movie/:movie_id" element={<Movie />} />
         <Route path="/artist/:artist_id" element={<Artist />} />
       </Routes>
-    </>
+    </div>
   );
 };
