@@ -17,3 +17,9 @@
   /* primary light mode */
   --color-dodgerblue: #008ffeff;
 }
+
+* {
+  font-family: 'Poppins', serif;
+  font-weight: 400;
+  font-style: normal;
+}
