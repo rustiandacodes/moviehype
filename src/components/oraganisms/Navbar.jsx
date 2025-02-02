@@ -1,9 +1,40 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { SunIcon } from '../atoms/SunIcon';
+import { MoonIcon } from '../atoms/MoonIcon';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeTheme } from '../../redux/slice/themeSlice';
 
 export const Navbar = () => {
+  const theme = useSelector((state) => state.theme.desc);
+  const dispatch = useDispatch();
   return (
     <div>
-      <div className="bg-white dark:bg-gray-800">navbar</div>
+      <div className="bg-seasalt dark:bg-jet text-jet dark:text-seasalt">
+        <div className="container mx-auto p-3 flex justify-between">
+          <div>
+            <Link to={'/'} className="text-jet dark:text-seasalt font-bold text-2xl">
+              MOVIE <span className="text-argentinianblue dark:text-dodgerblue">HYPE</span>
+            </Link>
+          </div>
+          <div>
+            <ul className="flex justify-center items-center gap-5">
+              <li>
+                <Link to={'/discover'}>Discover</Link>
+              </li>
+              <li className="flex justify-center items-center cursor-pointer py-1 px-2 rounded-3xl bg-purewhite dark:bg-onyx text-xs">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+                <p>CTRL+K</p>
+              </li>
+              <li className="cursor-pointer" onClick={() => dispatch(changeTheme())}>
+                {theme === 'light' ? <MoonIcon /> : <SunIcon />}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
