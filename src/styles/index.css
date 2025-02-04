@@ -21,3 +21,7 @@
 * {
   font-family: 'Poppins', serif;
 }
+
+.theme-switch {
+  @apply bg-seasalt dark:bg-jet dark:text-seasalt text-jet;
+}

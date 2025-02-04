@@ -1,10 +1,9 @@
 import { useDispatch } from 'react-redux';
-import { changeTheme } from '../redux/slice/themeSlice';
+import { PopularOftheWeek } from '../components/oraganisms/PopularOftheWeek';
 export const Home = () => {
-  const dispatch = useDispatch();
   return (
-    <div>
-      <div className="h-screen w-screen flex justify-center items-center bg-seasalt dark:bg-jet">
+    <div className="bg-seasalt dark:bg-jet">
+      {/* <div className="h-screen w-screen flex justify-center items-center bg-seasalt dark:bg-jet">
         <div className="w-1/4 bg-purewhite dark:bg-onyx p-5 rounded-2xl">
           <p className="dark:text-seasalt mb-3">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ducimus illo inventore rem consectetur exercitationem placeat, obcaecati facere excepturi reprehenderit minus temporibus, corrupti culpa soluta modi! Quasi enim
@@ -14,7 +13,8 @@ export const Home = () => {
             <p className="text-center font-semibold">Change Theme</p>
           </div>
         </div>
-      </div>
+      </div> */}
+      <PopularOftheWeek />
     </div>
   );
 };
