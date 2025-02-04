@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SunIcon } from '../atoms/SunIcon';
 import { MoonIcon } from '../atoms/MoonIcon';
@@ -6,8 +6,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { changeTheme } from '../../redux/slice/themeSlice';
 
 export const Navbar = () => {
-  const theme = useSelector((state) => state.theme.desc);
+  const theme = useSelector((state) => state.theme);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    localStorage.setItem('theme', JSON.stringify(theme));
+  }, [theme]);
+
   return (
     <div>
       <div className="bg-seasalt dark:bg-jet text-jet dark:text-seasalt">
@@ -29,7 +34,7 @@ export const Navbar = () => {
                 <p>CTRL+K</p>
               </li>
               <li className="cursor-pointer" onClick={() => dispatch(changeTheme())}>
-                {theme === 'light' ? <MoonIcon /> : <SunIcon />}
+                {theme.desc === 'light' ? <MoonIcon /> : <SunIcon />}
               </li>
             </ul>
           </div>
