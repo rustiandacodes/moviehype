@@ -7,7 +7,7 @@ export const PopularOftheWeek = () => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     getPopularMovies().then((results) => {
-      setMovies(results);
+      setMovies(results.slice(0, 16));
     });
   }, []);
 

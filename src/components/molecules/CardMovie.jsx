@@ -17,7 +17,7 @@ const CardMovie = (props) => {
     <Link className="relative bg-purewhite dark:bg-onyx shadow rounded cursor-pointer hover:scale-105 transition duration-300 overflow-hidden">
       <div className="absolute right-0 theme-switch p-1 top-0 text-xs flex justify-center items-center gap-1 opacity-70">
         <StarIcon />
-        <p className="font-medium">{rating}</p>
+        <p className="font-medium">{rating.toFixed(1)}</p>
       </div>
       <img src={`${baseImgUrl}`} alt="" />
       <div className="p-2">
