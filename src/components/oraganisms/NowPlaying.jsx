@@ -7,12 +7,9 @@ export const NowPlaying = () => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     getNowPlayingMovies().then((result) => {
-      //   const recentRelease = result.filter((movie) => movie.release_date.slice(0, 4) === '2025');
       setMovies(result.slice(0, 16));
     });
   }, []);
-
-  console.log(movies);
 
   return (
     <div className="theme-switch container mx-auto py-5 px-5 md:px-0">
