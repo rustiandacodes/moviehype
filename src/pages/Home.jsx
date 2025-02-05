@@ -1,8 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { PopularOftheWeek } from '../components/oraganisms/PopularOftheWeek';
+import { NowPlaying } from '../components/oraganisms/NowPlaying';
 export const Home = () => {
   return (
-    <div className="bg-seasalt dark:bg-jet">
+    <div className="bg-seasalt dark:bg-jet pt-28">
       {/* <div className="h-screen w-screen flex justify-center items-center bg-seasalt dark:bg-jet">
         <div className="w-1/4 bg-purewhite dark:bg-onyx p-5 rounded-2xl">
           <p className="dark:text-seasalt mb-3">
@@ -14,6 +15,7 @@ export const Home = () => {
           </div>
         </div>
       </div> */}
+      <NowPlaying />
       <PopularOftheWeek />
     </div>
   );
