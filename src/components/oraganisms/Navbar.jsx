@@ -19,7 +19,7 @@ export const Navbar = () => {
         <div className="container mx-auto flex flex-col gap-4 md:flex-row justify-between items-center py-5">
           <div>
             <Link to={'/'} className="text-jet dark:text-seasalt font-bold text-2xl">
-              MOVIE <span className="text-argentinianblue dark:text-dodgerblue">HYPE</span>
+              MOVIE <span className="text-red-500">HYPE</span>
             </Link>
           </div>
           <div>

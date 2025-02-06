@@ -11,8 +11,6 @@ export const PopularArtists = () => {
     });
   }, []);
 
-  console.log(artists);
-
   return (
     <div className="theme-switch container mx-auto py-5 px-5 md:px-0">
       <HeaderSection title="Popular Artists" />

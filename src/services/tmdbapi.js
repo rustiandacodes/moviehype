@@ -16,6 +16,10 @@ export const getTopRatedMovies = async (page = 1) => {
   const movies = await axios.get(`${baseUrl}/top_rated?language=en-US&page=${page}&api_key=${apiKey}`);
   return movies.data.results;
 };
+export const getUpComing = async (page = 1) => {
+  const movies = await axios.get(`${baseUrl}/upcoming?language=en-US&page=${page}&api_key=${apiKey}`);
+  return movies.data.results;
+};
 
 // discover
 export const getDiscoverMovies = async (page = 1) => {
