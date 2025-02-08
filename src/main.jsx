@@ -5,13 +5,16 @@ import { BrowserRouter } from 'react-router-dom';
 import { Router } from './router/Router.jsx';
 import { Provider } from 'react-redux';
 import store from './redux/store.js';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <SkeletonTheme>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </SkeletonTheme>
     </Provider>
   </StrictMode>
 );

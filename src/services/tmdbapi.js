@@ -28,7 +28,6 @@ export const getDiscoverMovies = async (page = 1) => {
 };
 
 // detail
-
 export const getDetail = async (movie_id) => {
   const movies = await axios.get(`${baseUrl}/${movie_id}?api_key=${apiKey}`);
   return movies.data;
