@@ -5,7 +5,7 @@ import { TopRated } from '../components/oraganisms/TopRated';
 import { UpComing } from '../components/oraganisms/UpComing';
 export const Home = () => {
   return (
-    <div className="bg-seasalt dark:bg-jet pt-28 ">
+    <div className="bg-seasalt dark:bg-jet pt-28 md:pt-20 ">
       <NowPlaying />
       <UpComing />
       <PopularOftheWeek />

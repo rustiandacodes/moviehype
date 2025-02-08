@@ -11,7 +11,7 @@ export const Discover = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getDiscoverMovies(1).then((result) => {
+    getDiscoverMovies().then((result) => {
       setMovies(result);
     });
     const delayLoading = setTimeout(() => {
@@ -29,7 +29,7 @@ export const Discover = () => {
   };
 
   return (
-    <div className="theme-switch py-32 min-h-screen">
+    <div className="theme-switch pt-24 min-h-screen">
       <div className=" container mx-auto py-5 px-5 md:px-0">
         <div className="py-5 grid xl:grid-cols-10 md:grid-cols-5 grid-cols-2 gap-4">
           {isLoading && <CardMovieSkeleton length={20} />}

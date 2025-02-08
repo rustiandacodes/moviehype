@@ -23,7 +23,10 @@ export const Navbar = () => {
             </Link>
           </div>
           <div>
-            <ul className="flex justify-center items-center gap-5">
+            <ul className="flex justify-center items-center gap-5 text-sm md:text-base">
+              <li>
+                <Link to={'/'}>Home</Link>
+              </li>
               <li>
                 <Link to={'/discover'}>Discover</Link>
               </li>
@@ -31,7 +34,7 @@ export const Navbar = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
                   <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                 </svg>
-                <p>CTRL+K</p>
+                <p className="hidden md:block">CTRL+K</p>
               </li>
               <li className="cursor-pointer" onClick={() => dispatch(changeTheme())}>
                 {theme.desc === 'light' ? <MoonIcon /> : <SunIcon />}
