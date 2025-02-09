@@ -8,7 +8,6 @@ import CardMovieSkeleton from '../molecules/CardMovieSkeleton';
 export const NowPlaying = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [message, setMessage] = useState('');
 
   useEffect(() => {
     getNowPlayingMovies().then((result) => {
