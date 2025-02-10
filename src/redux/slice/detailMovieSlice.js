@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const detailMovieSlice = createSlice({
   name: 'detailMovie',
-  initialState: { detail: [] },
+  initialState: { detail: JSON.parse(localStorage.getItem('detailMovie')) } || { detail: [] },
   reducers: {
     addMovie(state, action) {
       state.detail = action.payload;

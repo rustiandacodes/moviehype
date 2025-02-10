@@ -20,8 +20,6 @@ export const Discover = () => {
     return () => clearTimeout(delayLoading);
   }, []);
 
-  console.log(movies);
-
   const showMore = async () => {
     setPage(page + 1);
     const movie = await getDiscoverMovies(page);

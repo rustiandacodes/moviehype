@@ -4,7 +4,6 @@ import { genres } from '../../utils/genres';
 import { StarIcon } from '../atoms/StarIcon';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { getDetail } from '../../services/tmdbapi';
 import { useDispatch } from 'react-redux';
 import { addMovie } from '../../redux/slice/detailMovieSlice';
 
@@ -12,7 +11,6 @@ const CardMovie = (props) => {
   const { title, poster, rating, genre, date, id } = props;
   const baseImgUrl = import.meta.env.VITE_BASE_IMG_URL + poster;
   const year = date.slice(0, 4);
-  const dispatch = useDispatch();
 
   const findGenre = (id) => {
     const getGenre = genres.find((g) => g.id === id);
@@ -22,14 +20,14 @@ const CardMovie = (props) => {
     return 'Unknown Genre';
   };
 
-  const storeDetailMovie = () => {
-    getDetail(id).then((result) => {
-      dispatch(addMovie(result));
-    });
-  };
+  // const storeDetailMovie = () => {
+  //   getDetail(id).then((result) => {
+  //     dispatch(addMovie(result));
+  //   });
+  // };
 
   return (
-    <Link onClick={storeDetailMovie} to={`/movie/${id}`} className="relative bg-purewhite dark:bg-onyx shadow rounded-lg cursor-pointer hover:scale-105 transition duration-300 overflow-hidden">
+    <Link to={`/movie/${id}`} className="relative bg-purewhite dark:bg-onyx shadow rounded-lg cursor-pointer hover:scale-105 transition duration-300 overflow-hidden">
       <div className="absolute right-0 theme-switch p-1 top-0 text-xs flex justify-center items-center gap-1 opacity-70">
         <StarIcon />
         <p className="font-medium">{rating.toFixed(1)}</p>
