@@ -38,7 +38,7 @@ export const Discover = () => {
             showMore();
           }}
         >
-          {isLoading ? <ButtonSkeleton /> : <Button desc="Load More" />}
+          <div className="flex justify-center">{isLoading ? <ButtonSkeleton /> : <Button desc="Load More" />}</div>
         </div>
       </div>
     </div>

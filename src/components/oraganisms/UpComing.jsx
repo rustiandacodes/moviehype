@@ -12,11 +12,11 @@ export const UpComing = () => {
   useEffect(() => {
     getUpComing().then((result) => {
       setMovies(result.slice(0, 16));
+      const delayLoading = setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
+      return () => clearTimeout(delayLoading);
     });
-    const delayLoading = setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-    return () => clearTimeout(delayLoading);
   }, []);
 
   return (

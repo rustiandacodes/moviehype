@@ -12,12 +12,13 @@ export const NowPlaying = () => {
   useEffect(() => {
     getNowPlayingMovies().then((result) => {
       setMovies(result.slice(0, 16));
-    });
-
+      
     const delayLoading = setTimeout(() => {
       setIsLoading(false);
     }, 500);
     return () => clearTimeout(delayLoading);
+    });
+
   }, []);
 
   return (

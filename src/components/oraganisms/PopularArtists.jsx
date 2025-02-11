@@ -12,11 +12,12 @@ export const PopularArtists = () => {
   useEffect(() => {
     getPopularArtist().then((result) => {
       setArtists(result.slice(0, 16));
+          const delayLoading = setTimeout(() => {
+            setIsLoading(false);
+          }, 500);
+          return () => clearTimeout(delayLoading);
     });
-    const delayLoading = setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-    return () => clearTimeout(delayLoading);
+
   }, []);
 
   return (

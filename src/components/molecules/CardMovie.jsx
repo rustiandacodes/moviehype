@@ -20,11 +20,11 @@ const CardMovie = (props) => {
     return 'Unknown Genre';
   };
 
-  // const storeDetailMovie = () => {
-  //   getDetail(id).then((result) => {
-  //     dispatch(addMovie(result));
-  //   });
-  // };
+  const storeDetailMovie = () => {
+    getDetail(id).then((result) => {
+      dispatch(addMovie(result));
+    });
+  };
 
   return (
     <Link to={`/movie/${id}`} className="relative bg-purewhite dark:bg-onyx shadow rounded-lg cursor-pointer hover:scale-105 transition duration-300 overflow-hidden">
