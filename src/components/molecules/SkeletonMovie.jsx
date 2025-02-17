@@ -7,10 +7,12 @@ export const SkeletonMovie = () => {
       <Skeleton height={410} width={300} />
       <div className="px-5 md:px-0 text-jet dark:text-seasalt">
         <Skeleton width={300} height={30} className="mb-2" />
-        <Skeleton className="mb-3" width={300} />
+        <Skeleton className="mb-5" width={300} />
         <Skeleton className="mb-3" />
         <Skeleton className="mb-3" width={200} />
         <Skeleton count={3} width={400} />
+        <Skeleton className="mb-3 mt-5" width={100} />
+        <Skeleton className="mb-3" width={50} />
         <Skeleton width={200} height={40} className="mt-2" />
       </div>
     </div>

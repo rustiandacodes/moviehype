@@ -11,6 +11,8 @@ export const SkeletonMovieMobile = () => {
         <Skeleton className="mb-3" />
         <Skeleton className="mb-3" width={300} />
         <Skeleton count={3} width={370} />
+        <Skeleton className="mb-3 mt-5" width={100} />
+        <Skeleton className="mb-3" width={50} />
         <Skeleton width={370} height={40} className="mt-2" />
       </div>
     </div>

@@ -16,6 +16,7 @@ import { dateConverter } from '../utils/dateConverter';
 export const Movie = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [credit, setCredit] = useState([]);
+  const [director, setDirector] = useState([]);
   const [trailer, setTrailer] = useState([]);
   const [watchTrailer, setWatchTrailer] = useState(false);
   const [similar, setSimilar] = useState([]);
@@ -37,7 +38,9 @@ export const Movie = () => {
     });
 
     getCredit(movie_id).then((result) => {
+      const d = result.crew.filter((c) => c.job === 'Director');
       setCredit(result.cast);
+      setDirector(d);
     });
 
     getVideos(movie_id)
@@ -53,6 +56,8 @@ export const Movie = () => {
       setSimilar(result.slice(0, 16));
     });
   }, [movie_id]);
+
+  console.log(director);
 
   return (
     <div className="bg-seasalt dark:bg-jet pt-28 md:pt-20 min-h-screen">
@@ -80,6 +85,19 @@ export const Movie = () => {
             <p className=" md:text-base italic mb-2 opacity-85">{movie.tagline}</p>
             <p className="md:text-xl font-semibold mb-1">Overview</p>
             <p className=" md:text-base mb-2 lg:w-[70%]">{movie.overview}</p>
+            <div className="flex gap-5 items-center flex-wrap">
+              {director.map((d) => (
+                <div className="py-5 flex items-center gap-3">
+                  <div className="w-15 h-15 rounded-full overflow-hidden">
+                    <img className="-mt-5" src={baseImgUrl + d.profile_path} alt="" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-lg">{d.name}</p>
+                    <p className="opacity-70">Director</p>
+                  </div>
+                </div>
+              ))}
+            </div>
             <div className="py-5" onClick={() => setWatchTrailer(true)}>
               <Button desc="Watch Trailer" />
             </div>
