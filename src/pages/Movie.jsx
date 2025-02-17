@@ -8,6 +8,7 @@ import { Button } from '../components/atoms/Button';
 import { timeConvert } from '../utils/timeConverter';
 import { SimilarMovie } from '../components/oraganisms/SimilarMovie';
 import { SkeletonMovie } from '../components/molecules/SkeletonMovie';
+import { SkeletonMovieMobile } from '../components/molecules/SkeletonMovieMobile';
 
 export const Movie = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -74,7 +75,9 @@ export const Movie = () => {
           </div>
         </div>
       )}
-      {isLoading && <SkeletonMovie />}
+
+      <div className="hidden md:block">{isLoading && <SkeletonMovie />}</div>
+      <div className="block md:hidden px-5">{isLoading && <SkeletonMovieMobile />}</div>
 
       <div className={`${watchTrailer ? 'block' : 'hidden'} bg-black flex justify-center my-10 md:px-0 px-5 theme-switch`}>
         <iframe className="md:w-[100%] lg:w-[80%] w-full aspect-video" src={`https://www.youtube.com/embed/${trailer}`} allowFullScreen></iframe>
