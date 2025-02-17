@@ -39,14 +39,20 @@ export const Movie = () => {
       setCredit(result);
     });
 
-    getVideos(movie_id).then((result) => {
-      setTrailer(result.videos.results[0].key);
-    });
+    getVideos(movie_id)
+      .then((result) => {
+        setTrailer(result.videos.results[0].key);
+      })
+      .catch((error) => {
+        setTrailer([]);
+        console.log(error);
+      });
 
     getSimilarMovie(movie_id).then((result) => {
       setSimilar(result.slice(0, 16));
     });
   }, [movie_id]);
+  console.log(trailer);
 
   return (
     <div className="bg-seasalt dark:bg-jet pt-28 md:pt-20 min-h-screen">
