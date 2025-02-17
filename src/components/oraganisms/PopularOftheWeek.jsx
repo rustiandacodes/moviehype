@@ -12,16 +12,15 @@ export const PopularOftheWeek = () => {
   useEffect(() => {
     getPopularMovies().then((results) => {
       setMovies(results.slice(0, 16));
-          const delayLoading = setTimeout(() => {
-            setIsLoading(false);
-          }, 500);
-          return () => clearTimeout(delayLoading);
+      const delayLoading = setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
+      return () => clearTimeout(delayLoading);
     });
-
   }, []);
 
   return (
-    <div className="theme-switch container mx-auto py-5 px-5 md:px-0">
+    <div className="theme-switch container mx-auto px-5 md:px-0">
       {!isLoading ? <HeaderSection title="Popular of The Week" /> : <Skeleton width={300} height={20} />}
 
       <div className="py-5 grid xl:grid-cols-8 md:grid-cols-5 grid-cols-2 gap-4">

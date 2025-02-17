@@ -9,11 +9,13 @@ import { timeConvert } from '../utils/timeConverter';
 import { SimilarMovie } from '../components/oraganisms/SimilarMovie';
 import { SkeletonMovie } from '../components/molecules/SkeletonMovie';
 import { SkeletonMovieMobile } from '../components/molecules/SkeletonMovieMobile';
+import { HeaderSection } from '../components/atoms/HeaderSection';
+import Cast from '../components/molecules/Cast';
+import { dateConverter } from '../utils/dateConverter';
 
 export const Movie = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [credit, setCredit] = useState([]);
-  const [test, setTest] = useState([]);
   const [trailer, setTrailer] = useState([]);
   const [watchTrailer, setWatchTrailer] = useState(false);
   const [similar, setSimilar] = useState([]);
@@ -24,7 +26,6 @@ export const Movie = () => {
 
   useEffect(() => {
     getDetail(movie_id).then((result) => {
-      setTest([result]);
       dispatch(addMovie(result));
       localStorage.setItem('detailMovie', JSON.stringify(result));
       window.scrollTo({ top: 0, behavior: 'instant' });
@@ -36,7 +37,7 @@ export const Movie = () => {
     });
 
     getCredit(movie_id).then((result) => {
-      setCredit(result);
+      setCredit(result.cast);
     });
 
     getVideos(movie_id)
@@ -52,7 +53,6 @@ export const Movie = () => {
       setSimilar(result.slice(0, 16));
     });
   }, [movie_id]);
-  console.log(trailer);
 
   return (
     <div className="bg-seasalt dark:bg-jet pt-28 md:pt-20 min-h-screen">
@@ -68,9 +68,14 @@ export const Movie = () => {
                 <StarIcon />
                 <p>{movie.vote_average.toFixed(1)}</p>
               </div>
-              <p>• {movie.release_date}</p>
-              <p>• {timeConvert(movie.runtime)}</p>
-              {movie.genres.map((genre, i) => <p key={i}>• {genre.name}</p>) || 'unknown genre'}
+              <p>• {dateConverter(movie.release_date)}</p>
+              <p>• {timeConvert(movie.runtime)} • </p>
+              {movie.genres.map((genre, i) => (
+                <p key={i}>
+                  {genre.name}
+                  {movie.genres.length === i + 1 ? '.' : ','}
+                </p>
+              )) || 'unknown genre'}
             </div>
             <p className=" md:text-base italic mb-2 opacity-85">{movie.tagline}</p>
             <p className="md:text-xl font-semibold mb-1">Overview</p>
@@ -82,12 +87,14 @@ export const Movie = () => {
         </div>
       )}
 
+      <div className={`${watchTrailer ? 'block' : 'hidden'} bg-black flex flex-col gap-3 justify-center my-10 md:px-0 px-5 theme-switch container mx-auto`}>
+        <HeaderSection title="Trailer" />
+        <iframe className=" w-full aspect-video" src={`https://www.youtube.com/embed/${trailer}`} allowFullScreen></iframe>
+      </div>
+
       <div className="hidden md:block">{isLoading && <SkeletonMovie />}</div>
       <div className="block md:hidden px-5">{isLoading && <SkeletonMovieMobile />}</div>
-
-      <div className={`${watchTrailer ? 'block' : 'hidden'} bg-black flex justify-center my-10 md:px-0 px-5 theme-switch`}>
-        <iframe className="md:w-[100%] lg:w-[80%] w-full aspect-video" src={`https://www.youtube.com/embed/${trailer}`} allowFullScreen></iframe>
-      </div>
+      <Cast artist={credit} />
       <SimilarMovie movie={similar} />
     </div>
   );

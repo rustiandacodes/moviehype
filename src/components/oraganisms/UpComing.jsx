@@ -25,7 +25,7 @@ export const UpComing = () => {
 
       <div className="py-5 grid xl:grid-cols-8 md:grid-cols-5 grid-cols-2 gap-4">
         {isLoading && <CardMovieSkeleton length={16} />}
-        {!isLoading && movies.length > 0 && movies.map((movie) => <CardMovie key={movie.id} title={movie.title} poster={movie.poster_path} rating={movie.vote_average} genre={movie.genre_ids} date={movie.release_date} />)}
+        {!isLoading && movies.length > 0 && movies.map((movie) => <CardMovie key={movie.id} id={movie.id} title={movie.title} poster={movie.poster_path} rating={movie.vote_average} genre={movie.genre_ids} date={movie.release_date} />)}
       </div>
     </div>
   );

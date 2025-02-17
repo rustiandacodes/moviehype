@@ -1,12 +1,10 @@
 import React from 'react';
+import notFound from '../assets/notfound.png';
 
 export const NotFound = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="text-center">
-        <h1 className="text-9xl font-bold py-5">404</h1>
-        <h1 className="text-xl font-bold">Sorry we couldn't find that page</h1>
-      </div>
+    <div className="flex justify-center items-center h-screen theme-switch">
+      <img className="md:w-1/2" src={notFound} alt="not found " />
     </div>
   );
 };
