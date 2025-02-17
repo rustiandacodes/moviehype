@@ -6,7 +6,7 @@ import CardMovieSkeleton from '../components/molecules/CardMovieSkeleton';
 import { ButtonSkeleton } from '../components/atoms/ButtonSkeleton';
 
 export const Discover = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(2);
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -25,6 +25,8 @@ export const Discover = () => {
     const movie = await getDiscoverMovies(page);
     setMovies(movies.concat(movie));
   };
+
+  console.log(page);
 
   return (
     <div className="theme-switch pt-24 min-h-screen">
