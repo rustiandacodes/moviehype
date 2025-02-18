@@ -6,11 +6,43 @@ import { Movie } from '../pages/Movie';
 import { Artist } from '../pages/Artist';
 import { NotFound } from '../pages/404NotFound';
 import { Navbar } from '../components/oraganisms/Navbar';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Search } from '../components/molecules/Search';
+import { useState, useEffect } from 'react';
+import { changeStatus } from '../redux/slice/searchSlice';
 
 export const Router = () => {
   const theme = useSelector((state) => state.theme.desc);
+  const [keysPressed, setKeysPressed] = useState({});
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      setKeysPressed((prev) => ({ ...prev, [event.key.toLowerCase()]: true }));
+
+      if (keysPressed['control'] && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        dispatch(changeStatus());
+      }
+    };
+
+    const handleKeyUp = (event) => {
+      setKeysPressed((prev) => {
+        const updatedKeys = { ...prev };
+        delete updatedKeys[event.key.toLowerCase()];
+        return updatedKeys;
+      });
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  }, [keysPressed]);
+
   return (
     <div className={theme}>
       <Search />

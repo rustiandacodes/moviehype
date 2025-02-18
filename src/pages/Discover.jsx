@@ -26,8 +26,6 @@ export const Discover = () => {
     setMovies(movies.concat(movie));
   };
 
-  console.log(page);
-
   return (
     <div className="theme-switch pt-24 min-h-screen">
       <div className=" container mx-auto py-5 px-5 md:px-0">
