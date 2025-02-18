@@ -11,8 +11,13 @@ export const SkeletonMovie = () => {
         <Skeleton className="mb-3" />
         <Skeleton className="mb-3" width={200} />
         <Skeleton count={3} width={400} />
-        <Skeleton className="mb-3 mt-5" width={100} />
-        <Skeleton className="mb-3" width={50} />
+        <div className="flex items-center gap-3 my-5">
+          <Skeleton width={75} height={75} circle />
+          <div>
+            <Skeleton className="mb-2" width={100} />
+            <Skeleton className="mb-3" width={50} />
+          </div>
+        </div>
         <Skeleton width={200} height={40} className="mt-2" />
       </div>
     </div>
