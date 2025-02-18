@@ -15,7 +15,7 @@ export const Navbar = () => {
 
   return (
     <div>
-      <div className="bg-purewhite dark:bg-onyx text-jet dark:text-seasalt px-5 md:px-0 fixed z-50 w-full shadow">
+      <div className="bg-purewhite dark:bg-onyx text-jet dark:text-seasalt px-5 md:px-0 fixed z-30 w-full shadow">
         <div className="container mx-auto flex flex-col gap-4 md:flex-row justify-between items-center py-5">
           <div>
             <Link to={'/'} className="text-jet dark:text-seasalt font-bold text-2xl">
