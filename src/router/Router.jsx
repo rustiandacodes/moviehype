@@ -7,11 +7,13 @@ import { Artist } from '../pages/Artist';
 import { NotFound } from '../pages/404NotFound';
 import { Navbar } from '../components/oraganisms/Navbar';
 import { useSelector } from 'react-redux';
+import { Search } from '../components/molecules/Search';
 
 export const Router = () => {
   const theme = useSelector((state) => state.theme.desc);
   return (
     <div className={theme}>
+      <Search />
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
