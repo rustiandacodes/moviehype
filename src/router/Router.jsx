@@ -9,7 +9,7 @@ import { Navbar } from '../components/oraganisms/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { Search } from '../components/molecules/Search';
 import { useState, useEffect } from 'react';
-import { changeStatus } from '../redux/slice/searchSlice';
+import { changeStatus, escPress } from '../redux/slice/searchSlice';
 
 export const Router = () => {
   const theme = useSelector((state) => state.theme.desc);

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { getPopularMovies } from '../../services/tmdbapi';
+import { searchMovie } from '../../services/tmdbapi';
 import { dateConverter } from '../../utils/dateConverter';
 import { findGenre } from '../../utils/findGenreById';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,16 +7,22 @@ import { changeStatus } from '../../redux/slice/searchSlice';
 
 export const Search = () => {
   const [movies, setMovies] = useState([]);
+  const [keywords, setKeywords] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const baseImgUrl = import.meta.env.VITE_BASE_IMG_URL;
   const show = useSelector((state) => state.search.desc);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getPopularMovies().then((results) => {
-      setMovies(results);
-    });
-  }, []);
+    const search = async () => {
+      const query = await searchMovie(keywords);
+      setMovies(query.results);
+    };
+    search();
+  }, [keywords]);
+
+  console.log(keywords);
+  console.log(movies);
 
   return (
     <div className={`${show ? 'block' : 'hidden'} absolute top-0 left-0 right-0 bottom-0`}>
@@ -27,7 +33,7 @@ export const Search = () => {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6 dark:fill-seasalt fill-jet">
               <path fillRule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clipRule="evenodd" />
             </svg>
-            <input className="w-full outline-none dark:text-seasalt text-jet" placeholder="Discover many movies..." type="text" />
+            <input onChange={(e) => setKeywords(e.target.value)} className="w-full outline-none dark:text-seasalt text-jet" placeholder="Discover many movies..." type="text" />
             <div className="text-jet dark:text-seasalt" onClick={() => dispatch(changeStatus())}>
               <span className="p-[3px] dark:border-seasalt/20 border-onyx/50 border rounded cursor-pointer text-xs">esc</span>
             </div>

@@ -57,8 +57,6 @@ export const Movie = () => {
     });
   }, [movie_id]);
 
-  console.log(director);
-
   return (
     <div className="bg-seasalt dark:bg-jet pt-28 md:pt-20 min-h-screen">
       {!isLoading && (
@@ -86,8 +84,8 @@ export const Movie = () => {
             <p className="md:text-xl font-semibold mb-1">Overview</p>
             <p className=" md:text-base mb-2 lg:w-[70%]">{movie.overview}</p>
             <div className="flex gap-5 items-center flex-wrap">
-              {director.map((d) => (
-                <div className="py-5 flex items-center gap-3">
+              {director.map((d, i) => (
+                <div key={i} className="py-5 flex items-center gap-3">
                   <div className="w-15 h-15 rounded-full overflow-hidden shadow">
                     {!d.profile_path > 0 ? (
                       <div className="flex justify-center items-center bg-purewhite dark:bg-onyx w-full h-full">
