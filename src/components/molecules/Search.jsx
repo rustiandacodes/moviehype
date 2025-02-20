@@ -14,18 +14,21 @@ export const Search = () => {
   const show = useSelector((state) => state.search.desc);
   const dispatch = useDispatch();
   const modalRef = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     const search = async () => {
       try {
         const response = await searchMovie(keywords);
         setMovies(response.results);
+        console.log(response);
       } catch (error) {
         console.log('Terjadi kesalahan saat mengambil data:', error.message);
       }
     };
 
     search();
+    inputRef.current?.focus();
 
     if (show) {
       document.body.style.overflow = 'hidden';
@@ -59,7 +62,6 @@ export const Search = () => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         dispatch(changeToFalse());
         setKeywords('');
-        console.log('click di luar');
       }
     };
 
@@ -83,7 +85,7 @@ export const Search = () => {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6 dark:fill-seasalt fill-jet">
               <path fillRule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clipRule="evenodd" />
             </svg>
-            <input autoFocus value={keywords} onChange={(e) => setKeywords(e.target.value)} className="w-full outline-none dark:text-seasalt text-jet" placeholder="Discover many movies..." type="text" />
+            <input ref={inputRef} value={keywords} onChange={(e) => setKeywords(e.target.value)} className="w-full outline-none dark:text-seasalt text-jet" placeholder="Discover many movies..." type="text" />
             <div
               className="text-jet dark:text-seasalt"
               onClick={() => {
@@ -138,6 +140,9 @@ export const Search = () => {
                     </div>
                   </Link>
                 ))}
+              <div>
+                <p>view more</p>
+              </div>
             </div>
           )}
         </div>

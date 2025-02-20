@@ -62,7 +62,7 @@ export const getPopularArtist = async () => {
   return person.data.results;
 };
 
-export const searchMovie = async (keyword) => {
-  const search = await axios.get(`${baseUrl}/search/movie?query=${keyword}&page=1&api_key=${apiKey}`);
+export const searchMovie = async (keyword, page = 1) => {
+  const search = await axios.get(`${baseUrl}/search/movie?query=${keyword}&page=${page}&api_key=${apiKey}`);
   return search.data;
 };

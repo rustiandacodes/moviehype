@@ -49,7 +49,6 @@ export const Movie = () => {
       })
       .catch((error) => {
         setTrailer([]);
-        console.log(error);
       });
 
     getSimilarMovie(movie_id).then((result) => {
