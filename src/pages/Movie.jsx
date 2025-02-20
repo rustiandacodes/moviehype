@@ -56,6 +56,7 @@ export const Movie = () => {
       setSimilar(result.slice(0, 16));
     });
   }, [movie_id]);
+  console.log(director);
 
   return (
     <div className="bg-seasalt dark:bg-jet pt-28 md:pt-20 min-h-screen">

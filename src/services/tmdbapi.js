@@ -49,7 +49,7 @@ export const getSimilarMovie = async (movie_id) => {
 };
 
 export const getCredit = async (movie_id) => {
-  const movies = await axios.get(`${baseUrl}/movie${movie_id}/credits?api_key=${apiKey}`);
+  const movies = await axios.get(`${baseUrl}/movie/${movie_id}/credits?api_key=${apiKey}`);
   return movies.data;
 };
 
