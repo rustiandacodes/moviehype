@@ -7,11 +7,11 @@ const searchSlice = createSlice({
     changeStatus(state) {
       state.desc = !state.desc;
     },
-    escPress(state) {
+    changeToFalse(state) {
       state.desc = false;
     },
   },
 });
 
-export const { changeStatus, escPress } = searchSlice.actions;
+export const { changeStatus, changeToFalse } = searchSlice.actions;
 export default searchSlice.reducer;

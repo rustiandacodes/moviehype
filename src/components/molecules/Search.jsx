@@ -3,7 +3,7 @@ import { searchMovie } from '../../services/tmdbapi';
 import { dateConverter } from '../../utils/dateConverter';
 import { findGenre } from '../../utils/findGenreById';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeStatus, escPress } from '../../redux/slice/searchSlice';
+import { changeStatus, changeToFalse } from '../../redux/slice/searchSlice';
 import { Link } from 'react-router-dom';
 
 export const Search = () => {
@@ -13,6 +13,7 @@ export const Search = () => {
   const [keysPressed, setKeysPressed] = useState({});
   const show = useSelector((state) => state.search.desc);
   const dispatch = useDispatch();
+  const modalRef = useRef(null);
 
   useEffect(() => {
     const search = async () => {
@@ -35,7 +36,7 @@ export const Search = () => {
         setKeywords('');
       }
       if (event.key === 'Escape') {
-        dispatch(escPress());
+        dispatch(changeToFalse());
         setKeywords('');
       }
     };
@@ -48,19 +49,29 @@ export const Search = () => {
       });
     };
 
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        dispatch(changeToFalse());
+        setKeywords('');
+        console.log('click di luar');
+      }
+    };
+
+    window.addEventListener('mousedown', handleClickOutside);
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
+      window.removeEventListener('mousedown', handleClickOutside);
     };
   }, [keywords, keysPressed]);
 
   return (
     <div className={`${show ? 'block' : 'hidden'} absolute top-0 left-0 right-0 bottom-0`}>
       <div className="fixed w-screen h-screen z-50 bg-seasalt dark:bg-jet opacity-95 "></div>
-      <div className="flex justify-center">
+      <div ref={modalRef} className="flex justify-center">
         <div className={`fixed lg:w-[35%] w-[90%] ${movies.length > 0 ? 'h-[90%] md:h-[80%]' : ''}  z-50 bg-purewhite dark:bg-onyx md:top-20 top-10 rounded-lg`}>
           <div className="fixed lg:w-[35%] w-[90%] bg-purewhite dark:bg-onyx flex gap-5 justify-between items-center border-b-1 dark:border-seasalt/10 border-onyx/10 p-5 rounded-t-lg">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6 dark:fill-seasalt fill-jet">
