@@ -4,8 +4,6 @@ import { genres } from '../../utils/genres';
 import { StarIcon } from '../atoms/StarIcon';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { useDispatch } from 'react-redux';
-import { addMovie } from '../../redux/slice/detailMovieSlice';
 
 const CardMovie = (props) => {
   const { title, poster, rating, genre, date, id } = props;
@@ -18,12 +16,6 @@ const CardMovie = (props) => {
       return getGenre.name;
     }
     return 'Unknown Genre';
-  };
-
-  const storeDetailMovie = () => {
-    getDetail(id).then((result) => {
-      dispatch(addMovie(result));
-    });
   };
 
   return (

@@ -4,7 +4,7 @@ import { dateConverter } from '../../utils/dateConverter';
 import { findGenre } from '../../utils/findGenreById';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeStatus, changeToFalse } from '../../redux/slice/searchSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Search = () => {
   const [movies, setMovies] = useState([]);
@@ -16,6 +16,7 @@ export const Search = () => {
   const dispatch = useDispatch();
   const modalRef = useRef(null);
   const inputRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const search = async () => {
@@ -28,9 +29,8 @@ export const Search = () => {
       }
     };
 
-    console.log(totalPages);
-
     search();
+
     inputRef.current?.focus();
 
     if (show) {
@@ -48,6 +48,12 @@ export const Search = () => {
         setKeywords('');
       }
       if (event.key === 'Escape') {
+        dispatch(changeToFalse());
+        setKeywords('');
+      }
+
+      if (event.key === 'Enter') {
+        navigate(`/results/${keywords}`);
         dispatch(changeToFalse());
         setKeywords('');
       }
@@ -144,11 +150,18 @@ export const Search = () => {
                       </div>
                     </Link>
                   ))}
-                <div className="flex justify-center p-5">
+                <Link
+                  to={`/results/${keywords}`}
+                  onClick={() => {
+                    dispatch(changeToFalse());
+                    setKeywords('');
+                  }}
+                  className={`${totalPages.total_pages > 1 ? 'block' : 'hidden'} flex justify-center p-5`}
+                >
                   <div className="bg-red-500 w-full text-center rounded-lg cursor-pointer">
                     <p className="text-seasalt p-3">View More</p>
                   </div>
-                </div>
+                </Link>
               </div>
             )}
           </div>
