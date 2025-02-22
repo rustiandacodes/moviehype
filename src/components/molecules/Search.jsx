@@ -87,7 +87,7 @@ export const Search = () => {
 
   return (
     <div className={`${show ? 'block' : 'hidden'} absolute top-0 left-0 right-0 bottom-0`}>
-      <div className="fixed w-screen h-screen z-50 bg-seasalt dark:bg-jet opacity-95 "></div>
+      <div className="fixed w-screen h-screen z-50 bg-seasalt dark:bg-jet opacity-[98%] "></div>
       <div ref={modalRef} className="relative flex justify-center top-20">
         <div className={`lg:w-[35%] w-[90%]  z-50 bg-purewhite dark:bg-onyx rounded-lg`}>
           <div className="w-full bg-purewhite dark:bg-onyx flex gap-5 justify-between items-center border-b-1 dark:border-seasalt/10 border-onyx/10 p-5 rounded-t-lg">
@@ -138,12 +138,12 @@ export const Search = () => {
                       {movie.poster_path && <img className="w-20 rounded-lg" src={baseImgUrl + movie.poster_path} alt={movie.title} />}
 
                       <div>
-                        <p className="text-base font-semibold">{movie.title}</p>
-                        <p className="text-sm mb-1">{dateConverter(movie.release_date)}</p>
+                        <p className="text-base font-semibold">{movie.title || '-'}</p>
+                        <p className="text-sm mb-1">{dateConverter(movie.release_date) || '-'}</p>
                         <div className="flex gap-1 flex-wrap">
                           {movie.genre_ids.map((id) => (
                             <span key={id} className="p-1 border dark:text-seasalt/50 text-onyx dark:border-seasalt/10 border-onyx/30 rounded text-xs">
-                              {id > 0 && findGenre(id)}
+                              {(id > 0 && findGenre(id)) || '-'}
                             </span>
                           ))}
                         </div>

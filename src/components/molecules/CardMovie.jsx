@@ -6,7 +6,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 const CardMovie = (props) => {
-  const { title, poster, rating, genre, date, id } = props;
+  const { title = '-', poster = '-', rating = 0, genre = '-', date = '-', id = '-' } = props;
   const baseImgUrl = import.meta.env.VITE_BASE_IMG_URL + poster;
   const year = date.slice(0, 4);
 
@@ -15,7 +15,7 @@ const CardMovie = (props) => {
     if (getGenre) {
       return getGenre.name;
     }
-    return 'Unknown Genre';
+    return '-';
   };
 
   return (
