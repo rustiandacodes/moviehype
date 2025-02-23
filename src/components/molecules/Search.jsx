@@ -25,7 +25,7 @@ export const Search = () => {
         setMovies(response.results);
         setTotalPages(response);
       } catch (error) {
-        console.log('Terjadi kesalahan saat mengambil data:', error.message);
+        console.log('An error occurred while retrieving data:', error.message);
       }
     };
 
@@ -122,7 +122,7 @@ export const Search = () => {
                       }}
                       to={`/movie/${movie.id}`}
                       key={i}
-                      className="flex gap-2 border-b-1 dark:border-seasalt/10 border-onyx/10 p-3 text-jet dark:text-seasalt"
+                      className="flex gap-2 border-b-1 dark:border-seasalt/10 border-onyx/10 p-3 text-jet dark:text-seasalt hover:bg-red-500/50 hover:text-seasalt"
                     >
                       {!movie.poster_path && (
                         <div className="flex justify-center items-center w-20 h-24 bg-seasalt dark:bg-jet rounded-lg ">

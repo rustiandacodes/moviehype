@@ -2,7 +2,7 @@ import React from 'react';
 
 export const ProfileIcon = () => {
   return (
-    <div className="flex justify-center items-center dark:bg-onyx rounded-t-lg shadow py-7 md:py-0">
+    <div className="flex justify-center items-center dark:bg-onyx rounded-t-lg shadow py-7 md:py-0 ">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="lg:size-[24.5vh] md:size-[16.5vh] fill-jet dark:fill-seasalt">
         <path
           fillRule="evenodd"

@@ -21,6 +21,7 @@ export const Router = () => {
         <Route path="*" element={<NotFound />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/results/:movie_key" element={<Results />} />
+        <Route path="/results" element={<Results />} />
         <Route path="/movie/:movie_id" element={<Movie />} />
         <Route path="/artist/:artist_id" element={<Artist />} />
       </Routes>
