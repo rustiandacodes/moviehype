@@ -4,6 +4,8 @@ import CardMovie from '../components/molecules/CardMovie';
 import { Button } from '../components/atoms/Button';
 import CardMovieSkeleton from '../components/molecules/CardMovieSkeleton';
 import { ButtonSkeleton } from '../components/atoms/ButtonSkeleton';
+import Skeleton from 'react-loading-skeleton';
+import { HeaderSection } from '../components/atoms/HeaderSection';
 
 export const Discover = () => {
   const [page, setPage] = useState(2);
@@ -11,6 +13,7 @@ export const Discover = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
     getDiscoverMovies().then((result) => {
       setMovies(result);
     });
@@ -29,6 +32,8 @@ export const Discover = () => {
   return (
     <div className="theme-switch pt-24 min-h-screen">
       <div className=" container mx-auto py-5 px-5 md:px-0">
+        {!isLoading ? <HeaderSection title="Discovergit" /> : <Skeleton width={300} height={20} />}
+
         <div className="py-5 grid xl:grid-cols-10 md:grid-cols-5 grid-cols-2 gap-4">
           {isLoading && <CardMovieSkeleton length={20} />}
           {!isLoading && movies.length > 0 && movies.map((movie, i) => <CardMovie key={i} title={movie.title} poster={movie.poster_path} rating={movie.vote_average} genre={movie.genre_ids} date={movie.release_date} id={movie.id} />)}
