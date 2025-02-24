@@ -5,5 +5,7 @@ export const findGenre = (id) => {
   if (getGenre) {
     return getGenre.name;
   }
-  return 'Unknown Genre';
+  if (!getGenre) {
+    return 'Unknown Genre';
+  }
 };

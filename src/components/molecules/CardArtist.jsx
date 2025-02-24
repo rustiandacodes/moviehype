@@ -8,7 +8,7 @@ export const CardArtist = (props) => {
 
   return (
     <Link className="overflow-hidden  cursor-pointer hover:scale-105 transition duration-300">
-      {!image ? <ProfileIcon /> : <img className="rounded-t-lg" src={baseImgUrl} alt={name} />}
+      {!image ? <ProfileIcon /> : <img className="rounded-t-lg h-[80%] w-full" src={baseImgUrl} alt={name} />}
 
       <div className="p-2 bg-purewhite dark:bg-onyx rounded-b-lg shadow">
         <p className="font-semibold truncate dark:text-seasalt text-jet">{name}</p>

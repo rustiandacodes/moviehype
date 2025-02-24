@@ -4,6 +4,7 @@ import { SunIcon } from '../atoms/SunIcon';
 import { MoonIcon } from '../atoms/MoonIcon';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeTheme } from '../../redux/slice/themeSlice';
+import { changeStatus } from '../../redux/slice/searchSlice';
 
 export const Navbar = () => {
   const theme = useSelector((state) => state.theme);
@@ -30,7 +31,7 @@ export const Navbar = () => {
               <li>
                 <Link to={'/discover'}>Discover</Link>
               </li>
-              <li className="flex justify-center items-center cursor-pointer py-1 px-2 rounded-3xl bg-seasalt dark:bg-jet text-xs">
+              <li className="flex justify-center items-center cursor-pointer py-1 px-2 rounded-3xl bg-seasalt dark:bg-jet text-xs" onClick={() => dispatch(changeStatus())}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
                   <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                 </svg>
