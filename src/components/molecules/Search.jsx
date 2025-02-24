@@ -54,7 +54,7 @@ export const Search = () => {
         setKeywords('');
       }
 
-      if (event.key === 'Enter' && selectedItem < -1) {
+      if (event.key === 'Enter' && selectedItem === -1) {
         navigate(`/results/${keywords}`);
         dispatch(changeToFalse());
         setKeywords('');
@@ -70,8 +70,8 @@ export const Search = () => {
     };
 
     const handleScroll = (e) => {
-      if (scrollRef.current && selectedItem > 0) {
-        const scrollAmount = 130; // Jarak scroll (px)
+      if (scrollRef.current && selectedItem > 1) {
+        const scrollAmount = 130;
         switch (e.key) {
           case 'ArrowUp':
             scrollRef.current.scrollBy({ top: -scrollAmount, behavior: 'instant' });
