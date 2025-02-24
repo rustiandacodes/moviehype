@@ -11,11 +11,13 @@ export const Search = () => {
   const [keywords, setKeywords] = useState('');
   const [totalPages, setTotalPages] = useState({});
   const [keysPressed, setKeysPressed] = useState({});
+  const [selectedItem, setSelectedItem] = useState(-1);
   const baseImgUrl = import.meta.env.VITE_BASE_IMG_URL;
   const show = useSelector((state) => state.search.desc);
   const dispatch = useDispatch();
   const modalRef = useRef(null);
   const inputRef = useRef(null);
+  const scrollRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,7 +54,7 @@ export const Search = () => {
         setKeywords('');
       }
 
-      if (event.key === 'Enter') {
+      if (event.key === 'Enter' && selectedItem < -1) {
         navigate(`/results/${keywords}`);
         dispatch(changeToFalse());
         setKeywords('');
@@ -67,6 +69,23 @@ export const Search = () => {
       });
     };
 
+    const handleScroll = (e) => {
+      if (scrollRef.current && selectedItem > 0) {
+        const scrollAmount = 130; // Jarak scroll (px)
+        switch (e.key) {
+          case 'ArrowUp':
+            scrollRef.current.scrollBy({ top: -scrollAmount, behavior: 'instant' });
+            break;
+          case 'ArrowDown':
+            scrollRef.current.scrollBy({ top: scrollAmount, behavior: 'instant' });
+            break;
+
+          default:
+            break;
+        }
+      }
+    };
+
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         dispatch(changeToFalse());
@@ -75,15 +94,29 @@ export const Search = () => {
     };
 
     window.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('keydown', handleScroll);
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
 
     return () => {
+      window.removeEventListener('keydown', handleScroll);
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
       window.removeEventListener('mousedown', handleClickOutside);
     };
   }, [keywords, keysPressed, show]);
+
+  const handleKeySearch = (e) => {
+    console.log(e.key);
+    if (e.key === 'ArrowUp' && selectedItem > 0) {
+      setSelectedItem((prev) => prev - 1);
+    } else if (e.key === 'ArrowDown' && selectedItem < movies.length - 1) {
+      setSelectedItem((prev) => prev + 1);
+    } else if (e.key === 'Enter' && selectedItem < movies.length - 1) {
+      dispatch(changeToFalse());
+      navigate(`/movie/${movies[selectedItem].id}`);
+    }
+  };
 
   return (
     <div className={`${show ? 'block' : 'hidden'} absolute top-0 left-0 right-0 bottom-0`}>
@@ -94,7 +127,18 @@ export const Search = () => {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6 dark:fill-seasalt fill-jet">
               <path fillRule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clipRule="evenodd" />
             </svg>
-            <input ref={inputRef} value={keywords} onChange={(e) => setKeywords(e.target.value)} className="w-full outline-none dark:text-seasalt text-jet" placeholder="Search any movies..." type="text" />
+            <input
+              onKeyDown={handleKeySearch}
+              ref={inputRef}
+              value={keywords}
+              onChange={(e) => {
+                setKeywords(e.target.value);
+                setSelectedItem(-1);
+              }}
+              className="w-full outline-none dark:text-seasalt text-jet"
+              placeholder="Search any movies..."
+              type="text"
+            />
             <div
               className="text-jet dark:text-seasalt"
               onClick={() => {
@@ -105,7 +149,7 @@ export const Search = () => {
               <span className="p-[3px] dark:border-seasalt/20 border-onyx/50 border rounded cursor-pointer text-xs">esc</span>
             </div>
           </div>
-          <div className={`${movies.length > 0 ? 'md:max-h-[600px] max-h-[550px] overflow-scroll' : ''} `}>
+          <div ref={scrollRef} className={`${movies.length > 0 ? 'md:max-h-[600px] max-h-[550px] ' : ''} overflow-scroll `}>
             {!movies.length > 0 && (
               <div className="py-20">
                 <p className="text-center dark:text-seasalt text-onyx">{!keywords ? 'No recent searches' : `No results for : ${keywords}`}</p>
@@ -122,7 +166,7 @@ export const Search = () => {
                       }}
                       to={`/movie/${movie.id}`}
                       key={i}
-                      className="flex gap-2 border-b-1 dark:border-seasalt/10 border-onyx/10 p-3 text-jet dark:text-seasalt hover:bg-red-500/50 hover:text-seasalt"
+                      className={`${selectedItem === i ? 'bg-red-500/50' : ''} flex gap-2 border-b-1 dark:border-seasalt/10 border-onyx/10 p-3 text-jet dark:text-seasalt hover:bg-red-500/50 hover:text-seasalt`}
                     >
                       {!movie.poster_path && (
                         <div className="flex justify-center items-center w-20 h-24 bg-seasalt dark:bg-jet rounded-lg ">
