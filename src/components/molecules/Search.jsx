@@ -164,9 +164,11 @@ export const Search = () => {
                         dispatch(changeStatus());
                         setKeywords('');
                       }}
+                      onMouseEnter={() => setSelectedItem(i)}
+                      onMouseLeave={() => setSelectedItem(-1)}
                       to={`/movie/${movie.id}`}
                       key={i}
-                      className={`${selectedItem === i ? 'bg-red-500/50' : ''} flex gap-2 border-b-1 dark:border-seasalt/10 border-onyx/10 p-3 text-jet dark:text-seasalt hover:bg-red-500/50 hover:text-seasalt`}
+                      className={`${selectedItem === i ? 'bg-red-500/50  hover:bg-none' : ''} flex gap-2 border-b-1 dark:border-seasalt/10 border-onyx/10 p-3 text-jet dark:text-seasalt `}
                     >
                       {!movie.poster_path && (
                         <div className="flex justify-center items-center w-20 h-24 bg-seasalt dark:bg-jet rounded-lg ">
