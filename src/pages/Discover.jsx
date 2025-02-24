@@ -32,7 +32,7 @@ export const Discover = () => {
   return (
     <div className="theme-switch pt-24 min-h-screen">
       <div className=" container mx-auto py-5 px-5 md:px-0">
-        {!isLoading ? <HeaderSection title="Discovergit" /> : <Skeleton width={300} height={20} />}
+        {!isLoading ? <HeaderSection title="Discover" /> : <Skeleton width={300} height={20} />}
 
         <div className="py-5 grid xl:grid-cols-10 md:grid-cols-5 grid-cols-2 gap-4">
           {isLoading && <CardMovieSkeleton length={20} />}
