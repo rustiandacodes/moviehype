@@ -5,6 +5,7 @@ import { TopRated } from '../components/oraganisms/TopRated';
 import { UpComing } from '../components/oraganisms/UpComing';
 import { useEffect } from 'react';
 import { Hero } from '../components/molecules/Hero';
+import { SkeletonHero } from '../components/molecules/SkeletonHero';
 export const Home = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
