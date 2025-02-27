@@ -71,13 +71,13 @@ export const Search = () => {
 
     const handleScroll = (e) => {
       if (scrollRef.current && selectedItem > 1) {
-        const scrollAmount = 130;
+        const scrollAmount = 140;
         switch (e.key) {
           case 'ArrowUp':
-            scrollRef.current.scrollBy({ top: -scrollAmount, behavior: 'instant' });
+            scrollRef.current.scrollBy({ top: -scrollAmount, behavior: 'smooth' });
             break;
           case 'ArrowDown':
-            scrollRef.current.scrollBy({ top: scrollAmount, behavior: 'instant' });
+            scrollRef.current.scrollBy({ top: scrollAmount, behavior: 'smooth' });
             break;
 
           default:
@@ -107,7 +107,6 @@ export const Search = () => {
   }, [keywords, keysPressed, show]);
 
   const handleKeySearch = (e) => {
-    console.log(e.key);
     if (e.key === 'ArrowUp' && selectedItem > 0) {
       setSelectedItem((prev) => prev - 1);
     } else if (e.key === 'ArrowDown' && selectedItem < movies.length - 1) {

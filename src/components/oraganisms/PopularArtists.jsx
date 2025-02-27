@@ -12,12 +12,11 @@ export const PopularArtists = () => {
   useEffect(() => {
     getPopularArtist().then((result) => {
       setArtists(result.slice(0, 16));
-          const delayLoading = setTimeout(() => {
-            setIsLoading(false);
-          }, 500);
-          return () => clearTimeout(delayLoading);
+      const delayLoading = setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
+      return () => clearTimeout(delayLoading);
     });
-
   }, []);
 
   return (
@@ -25,7 +24,7 @@ export const PopularArtists = () => {
       {!isLoading ? <HeaderSection title="Popular Artists" /> : <Skeleton width={300} height={20} />}
       <div className="py-5 grid xl:grid-cols-8 md:grid-cols-5 grid-cols-2 gap-4">
         {isLoading && <CardMovieSkeleton length={16} type={'artist'} />}
-        {!isLoading && artists.length > 0 && artists.map((artist) => <CardArtist key={artist.id} name={artist.name} image={artist.profile_path} />)}
+        {!isLoading && artists.length > 0 && artists.map((artist, i) => <CardArtist key={i} person_id={artist.id} name={artist.name} image={artist.profile_path} />)}
       </div>
     </div>
   );

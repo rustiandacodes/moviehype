@@ -9,13 +9,12 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { HeaderSection } from '../atoms/HeaderSection';
 import CardMovieSkeleton from './CardMovieSkeleton';
-import { CardArtist } from './CardArtist';
 import Skeleton from 'react-loading-skeleton';
+import { CardKnownFor } from './CardKnownFor';
 
-const Cast = (props) => {
-  const { artist } = props;
+const KnownFor = (props) => {
+  const { movies } = props;
   const [isLoading, setIsLoading] = useState(true);
-  console.log(artist);
 
   useEffect(() => {
     const delayLoading = setTimeout(() => {
@@ -23,8 +22,9 @@ const Cast = (props) => {
     }, 500);
     return () => clearTimeout(delayLoading);
   }, []);
+
   return (
-    <div className={`${artist.length > 0 ? 'block' : 'hidden'} container mx-auto px-5 md:px-0 py-5`}>
+    <div className={`${movies.length > 0 ? 'block' : 'hidden'} container mx-auto px-5 md:px-0 py-5`}>
       <div className="mb-5">{!isLoading ? <HeaderSection title="Known For" /> : <Skeleton width={300} height={20} />}</div>
 
       {isLoading && (
@@ -60,10 +60,15 @@ const Cast = (props) => {
         scrollbar={{ draggable: true }}
         style={{ '--swiper-pagination-color': '#FFFF', '--swiper-pagination-bullet-inactive-color': '#999999', '--swiper-navigation-color': '#FFFF' }}
       >
-        {artist.length > 0 && artist.map((list, i) => <SwiperSlide key={i}>{!isLoading && <CardArtist key={i} person_id={list.id} name={list.name} image={list.profile_path} character={list.character} />}</SwiperSlide>)}
+        {movies.length > 0 &&
+          movies.map((movie, i) => (
+            <SwiperSlide key={i}>
+              {!isLoading && <CardKnownFor key={i} id={movie.id} title={movie.title} name={movie.name} poster={movie.poster_path} rating={movie.vote_average} genre={movie.genre_ids} date={movie.release_date} character={movie.character} />}
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );
 };
 
-export default Cast;
+export default KnownFor;

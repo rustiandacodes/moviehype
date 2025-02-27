@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { ProfileIcon } from '../atoms/ProfileIcon';
 
 export const CardArtist = (props) => {
-  const { name, image, character } = props;
+  const { name, image, character, person_id } = props;
   const baseImgUrl = import.meta.env.VITE_BASE_IMG_URL + image;
 
   return (
-    <Link className="overflow-hidden  cursor-pointer hover:scale-105 transition duration-300">
+    <Link to={`/person/${person_id}`} className="overflow-hidden  cursor-pointer hover:scale-105 transition duration-300">
       {!image ? <ProfileIcon /> : <img className="rounded-t-lg h-[80%] w-full" src={baseImgUrl} alt={name} />}
 
       <div className="p-2 bg-purewhite dark:bg-onyx rounded-b-lg shadow">

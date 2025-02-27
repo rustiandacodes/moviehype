@@ -66,3 +66,12 @@ export const searchMovie = async (keyword, page = 1) => {
   const search = await axios.get(`${baseUrl}/search/movie?query=${keyword}&page=${page}&api_key=${apiKey}`);
   return search.data;
 };
+
+export const getPerson = async (person_id) => {
+  const res = await axios.get(`${baseUrl}/person/${person_id}?api_key=${apiKey}`);
+  return res.data;
+};
+export const getPersonCombinedCredit = async (person_id) => {
+  const res = await axios.get(`${baseUrl}/person/${person_id}/combined_credits?api_key=${apiKey}`);
+  return res.data;
+};
