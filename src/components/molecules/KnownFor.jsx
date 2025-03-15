@@ -25,7 +25,7 @@ const KnownFor = (props) => {
 
   return (
     <div className={`${movies.length > 0 ? 'block' : 'hidden'} container mx-auto px-5 md:px-0 py-5`}>
-      <div className="mb-5">{!isLoading ? <HeaderSection title="Known For" /> : <Skeleton width={300} height={20} />}</div>
+      <div className="mb-5">{!isLoading ? <HeaderSection title="Acting" /> : <Skeleton width={300} height={20} />}</div>
 
       {isLoading && (
         <div className="py-5 grid xl:grid-cols-8 md:grid-cols-5 grid-cols-2 gap-4">
